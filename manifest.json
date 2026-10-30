@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "X Thread-Ansicht",
+  "version": "1.0.0",
+  "description": "Blendet unter jeder Antwort auf x.com alle Unterantworten per Button ein und aus – als verschachtelte Thread-Ansicht.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "X Thread-Ansicht",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["thread-toggle.js"],
+      "css": ["thread-toggle.css"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

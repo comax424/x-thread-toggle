@@ -1,0 +1,127 @@
+.xtt-thread {
+  padding: 0 16px 8px 72px; /* bündig mit dem Text der X-Antwort darüber */
+  font-family: TwitterChirp, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.xtt-replies .xtt-thread { padding: 2px 0 0 6px; } /* 16 px pro Ebene, damit auch tiefe Threads lesbar bleiben */
+
+.xtt-toggle {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  color: #1d9bf0;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.xtt-toggle:hover { text-decoration: underline; }
+
+.xtt-replies {
+  border-left: 2px solid rgba(128, 128, 128, 0.35);
+  padding-left: 8px;
+}
+
+/* Breitere Mittelspalte (Häkchen im Popup, über bridge.js); nur wenn das Fenster genug Platz hat */
+@media (min-width: 1700px) {
+  html[data-xtt-wide="1"] main div:has(> [data-testid="primaryColumn"]),
+  html[data-xtt-wide="1"] main div:has(> div > [data-testid="primaryColumn"]),
+  html[data-xtt-wide="1"] main div:has(> div > div > [data-testid="primaryColumn"]) {
+    width: auto !important;
+    max-width: none !important;
+  }
+  html[data-xtt-wide="1"] [data-testid="primaryColumn"] {
+    width: 1000px !important;
+    max-width: 1000px !important;
+  }
+}
+.xtt-replies[hidden] { display: none; }
+.xtt-item { margin: 10px 0; }
+
+.xtt-tweet { display: flex; gap: 8px; }
+.xtt-avatar { width: 32px; height: 32px; border-radius: 50%; display: block; }
+.xtt-tweet > a { flex: none; align-self: flex-start; }
+.xtt-thread a.xtt-user { color: inherit; }
+.xtt-body { flex: 1; min-width: 0; }
+.xtt-thread a { color: #1d9bf0; text-decoration: none; }
+.xtt-thread a:hover { text-decoration: underline; }
+.xtt-thread .xtt-muted, .xtt-thread a.xtt-muted { color: rgb(113, 118, 123); }
+.xtt-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.xtt-actions { display: flex; justify-content: space-between; max-width: 425px; margin-top: 4px; }
+.xtt-thread .xtt-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: rgb(113, 118, 123);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.xtt-act svg { width: 18px; height: 18px; fill: currentColor; }
+.xtt-thread .xtt-act:hover, .xtt-thread .xtt-bookmark.xtt-on { color: #1d9bf0; text-decoration: none; }
+.xtt-thread .xtt-retweet:hover, .xtt-thread .xtt-retweet.xtt-on { color: #00ba7c; }
+.xtt-thread .xtt-like:hover, .xtt-thread .xtt-like.xtt-on { color: #f91880; }
+
+.xtt-menu { display: flex; gap: 16px; }
+.xtt-composer { margin-top: 6px; }
+.xtt-composer textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  resize: vertical;
+}
+.xtt-composer-row { display: flex; justify-content: flex-end; gap: 12px; margin-top: 4px; }
+.xtt-send {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #1d9bf0;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.xtt-send:disabled { opacity: 0.6; cursor: default; }
+
+.xtt-media { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.xtt-media img { max-width: 100%; max-height: 180px; border-radius: 8px; display: block; }
+.xtt-video { position: relative; display: block; }
+.xtt-video::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  text-shadow: 0 0 6px #000;
+}
+
+.xtt-thread a.xtt-quote {
+  display: block;
+  margin-top: 6px;
+  padding: 6px 8px;
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 10px;
+  color: inherit;
+  font-size: 14px;
+}
+.xtt-quote-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 290px; margin: 12px; font: 14px system-ui, sans-serif; background: #fff; color: #0f1419; }
+    label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+    p { margin: 10px 0 0; font-size: 12px; color: #536471; }
+    label.next { margin-top: 16px; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #15202b; color: #e7e9ea; }
+      p { color: #8b98a5; }
+    }
+  </style>
+</head>
+<body>
+  <label>
+    <input type="checkbox" id="autoExpand">
+    Beim Öffnen eines Beitrags alle Antworten automatisch aufklappen
+  </label>
+  <p>Höchstens 80 Abfragen pro Beitrag; sichtbare Antworten zuerst. Stoppt, bevor X' Abfrage-Limit knapp wird. Nicht erreichte Äste behalten ihren Button.</p>
+  <label class="next">
+    <input type="checkbox" id="wide">
+    Mittelspalte verbreitern (1000 statt 600 px)
+  </label>
+  <p>Nur bei Fenstern ab 1700 px Breite. Seitenleisten rücken nach außen.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
