@@ -1,3 +1,10 @@
+// Popup-Texte in der Browsersprache
+const lang = window.xttPick(navigator.language);
+document.documentElement.lang = lang;
+for (const el of document.querySelectorAll('[data-i18n]')) {
+  el.textContent = window.xttStrings[lang][el.dataset.i18n] ?? window.xttStrings.en[el.dataset.i18n];
+}
+
 const defaults = { autoExpand: false, wide: true };
 chrome.storage.sync.get(defaults, (s) => {
   for (const key of Object.keys(defaults)) {

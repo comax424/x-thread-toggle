@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html>
 <head>
   <meta charset="utf-8">
   <style>
@@ -16,14 +16,15 @@
 <body>
   <label>
     <input type="checkbox" id="autoExpand">
-    Beim Öffnen eines Beitrags alle Antworten automatisch aufklappen
+    <span data-i18n="popupAuto"></span>
   </label>
-  <p>Höchstens 80 Abfragen pro Beitrag; sichtbare Antworten zuerst. Stoppt, bevor X' Abfrage-Limit knapp wird. Nicht erreichte Äste behalten ihren Button.</p>
+  <p data-i18n="popupAutoHint"></p>
   <label class="next">
     <input type="checkbox" id="wide">
-    Mittelspalte verbreitern (1000 statt 600 px)
+    <span data-i18n="popupWide"></span>
   </label>
-  <p>Nur bei Fenstern ab 1700 px Breite. Seitenleisten rücken nach außen.</p>
+  <p data-i18n="popupWideHint"></p>
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

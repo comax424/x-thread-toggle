@@ -1,7 +1,7 @@
 # X Thread-Ansicht
 
 Chrome-Erweiterung für x.com: Unter jeder Antwort, die selbst Antworten hat, erscheint ein Button
-„▸ N Antworten anzeigen“. Ein Klick klappt **alle** Beiträge darunter als verschachtelten Baum auf
+„▸ Antworten anzeigen (N)“. Ein Klick klappt **alle** Beiträge darunter als verschachtelten Baum auf
 (bis zu 15 Ladevorgänge pro Klick, Ebene für Ebene). Jede Ebene lässt sich einzeln wieder einklappen.
 Tiefere Äste, die nicht mehr ins Budget passten, haben ihren eigenen Button.
 
@@ -33,6 +33,14 @@ wurde, behält seinen Button.
 Zweites Häkchen im Popup (standardmäßig an): Die Mittelspalte wird 1000 statt 600 px breit, die Seitenleisten
 rücken nach außen. Greift nur bei Fenstern ab 1700 px Breite, sonst bleibt X' Layout unverändert.
 Verschachtelte Antworten rücken pro Ebene nur 16 px ein, damit auch tiefe Threads lesbar bleiben.
+
+## Sprachen
+
+29 Sprachen: alle 24 EU-Amtssprachen (bg, cs, da, de, el, en, es, et, fi, fr, ga, hr, hu, it, lt, lv, mt, nl, pl, pt, ro, sk, sl, sv)
+sowie Norwegisch, Ukrainisch, Russisch, Türkisch und Katalanisch. Die Texte auf x.com folgen der in X eingestellten Sprache,
+das Popup folgt der Browsersprache. Fehlt eine Sprache, erscheint Englisch. Alle Texte stehen in `i18n.js`,
+Name und Beschreibung der Erweiterung in `_locales/` (Chrome kennt dort kein Irisch und Maltesisch; diese fallen auf Englisch zurück).
+Die Übersetzungen wurden mit KI erstellt und nicht von Muttersprachlern geprüft.
 
 ## Installieren
 
