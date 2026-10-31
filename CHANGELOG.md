@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - English README (German version moved to `README.de.md`), privacy notice and disclaimer of affiliation with X Corp.
 - This changelog.
+- Security policy (`SECURITY.md`) with private vulnerability reporting.
 
 ## [1.1.0] - 2026-10-31
 
