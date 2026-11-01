@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-01
+
+### Fixed
+
+- Expanding a thread failed with “t is not a function” for every post (regression in 1.1.0): the translation
+  helper shared its name with the post variable in the action bar. The helper is now called `msg`.
+
 ### Added
 
 - English README (German version moved to `README.de.md`), privacy notice and disclaimer of affiliation with X Corp.
@@ -34,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/comax424/x-thread-toggle/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/comax424/x-thread-toggle/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/comax424/x-thread-toggle/releases/tag/v1.0.0

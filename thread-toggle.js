@@ -10,7 +10,7 @@
 
   // Sprache folgt X' Oberfläche (<html lang>), Texte aus i18n.js
   const lang = () => window.xttPick(document.documentElement.lang || navigator.language);
-  function t(key, vars = {}) {
+  function msg(key, vars = {}) {
     const s = window.xttStrings[lang()][key] ?? window.xttStrings.en[key];
     return s.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
   }
@@ -34,7 +34,7 @@
 
   // --- 2. Antworten eines Beitrags laden ---
   async function fetchReplies(tweetId, cursor) {
-    if (!template) throw new Error(t('errReload'));
+    if (!template) throw new Error(msg('errReload'));
     const url = new URL(template.url, location.origin);
     const vars = JSON.parse(url.searchParams.get('variables'));
     vars.focalTweetId = tweetId;
@@ -47,8 +47,8 @@
     const res = await fetch(url, { headers, credentials: 'include' });
     const remaining = res.headers.get('x-rate-limit-remaining');
     if (remaining !== null) rateRemaining = Number(remaining);
-    if (res.status === 429) throw new Error(t('errLimit'));
-    if (!res.ok) throw new Error(t('errStatus', { status: res.status }));
+    if (res.status === 429) throw new Error(msg('errLimit'));
+    if (!res.ok) throw new Error(msg('errStatus', { status: res.status }));
     return parseReplies(await res.json(), tweetId);
   }
 
@@ -66,7 +66,7 @@
         })
         .flatMap((id) => Object.values(req(id)))
         .find((f) => typeof f === 'function' && f.length === 3); // (host, path, method)
-      if (!txGen) throw new Error(t('errChanged'));
+      if (!txGen) throw new Error(msg('errChanged'));
     }
     return txGen('https://x.com', path, 'POST');
   }
@@ -77,12 +77,12 @@
     bundle ??= fetch([...document.scripts].map((s) => s.src).find((s) => /\/client-web\/main\.[^/]+\.js$/.test(s)))
       .then((r) => r.text());
     const m = (await bundle).match(new RegExp(`queryId:"([^"]+)",operationName:"${name}",operationType:"mutation",metadata:\\{featureSwitches:\\[([^\\]]*)\\]`));
-    if (!m) throw new Error(t('errChanged'));
+    if (!m) throw new Error(msg('errChanged'));
     return { queryId: m[1], features: m[2] ? m[2].replace(/"/g, '').split(',') : [] };
   }
 
   async function mutate(name, variables) {
-    if (!template) throw new Error(t('errReload'));
+    if (!template) throw new Error(msg('errReload'));
     const op = await operation(name);
     const path = `/i/api/graphql/${op.queryId}/${name}`;
     const body = { variables, queryId: op.queryId };
@@ -97,7 +97,7 @@
       body: JSON.stringify(body),
     });
     const json = await res.json().catch(() => null);
-    if (!res.ok || json?.errors?.length) throw new Error(json?.errors?.[0]?.message || t('errStatus', { status: res.status }));
+    if (!res.ok || json?.errors?.length) throw new Error(json?.errors?.[0]?.message || msg('errStatus', { status: res.status }));
     return json.data;
   }
 
@@ -305,10 +305,10 @@
       const box = el('div', 'xtt-composer');
       const ta = el('textarea');
       ta.rows = 3;
-      ta.placeholder = mode === 'reply' ? t('replyTo', { handle: u.handle }) : t('quotePlaceholder');
+      ta.placeholder = mode === 'reply' ? msg('replyTo', { handle: u.handle }) : msg('quotePlaceholder');
       ta.addEventListener('keydown', (e) => e.stopPropagation()); // X' Tastenkürzel nicht auslösen
-      const send = el('button', 'xtt-send', mode === 'reply' ? t('reply') : t('post'));
-      const cancel = el('button', 'xtt-toggle', t('cancel'));
+      const send = el('button', 'xtt-send', mode === 'reply' ? msg('reply') : msg('post'));
+      const cancel = el('button', 'xtt-toggle', msg('cancel'));
       const row = el('div', 'xtt-composer-row');
       row.append(cancel, send);
       box.append(ta, row);
@@ -321,7 +321,7 @@
         const text = ta.value.trim();
         if (!text || send.disabled) return;
         send.disabled = true;
-        send.textContent = t('sending');
+        send.textContent = msg('sending');
         // Aufbau wie in X' eigenem CreateTweet-Aufruf
         const vars = { tweet_text: text, media: { media_entities: [], possibly_sensitive: false }, semantic_annotation_ids: [] };
         if (mode === 'reply') vars.reply = { in_reply_to_tweet_id: id, exclude_reply_user_ids: [] };
@@ -329,12 +329,12 @@
         try {
           const data = await mutate('CreateTweet', vars);
           const posted = unwrap(data?.create_tweet?.tweet_results?.result);
-          extra.replaceChildren(el('div', 'xtt-muted', mode === 'reply' ? t('yourReply') : t('yourQuote')));
+          extra.replaceChildren(el('div', 'xtt-muted', mode === 'reply' ? msg('yourReply') : msg('yourQuote')));
           if (posted) extra.append(renderTweet(posted));
           if (mode === 'reply') reply.show((reply.state = { on: false, count: reply.state.count + 1 }));
         } catch (err) {
           send.disabled = false;
-          send.textContent = t('retry');
+          send.textContent = msg('retry');
           box.append(el('div', 'xtt-muted', '⚠ ' + err.message));
         }
       });
@@ -342,18 +342,18 @@
       ta.focus();
     }
 
-    const reply = button('reply', t('reply'), L.reply_count, false);
+    const reply = button('reply', msg('reply'), L.reply_count, false);
     reply.addEventListener('click', (e) => {
       e.stopPropagation();
       openComposer('reply');
     });
 
-    const retweet = button('retweet', t('repost'), L.retweet_count, L.retweeted);
+    const retweet = button('retweet', msg('repost'), L.retweet_count, L.retweeted);
     retweet.addEventListener('click', (e) => {
       e.stopPropagation();
       const menu = el('div', 'xtt-menu'); // Zwischenschritt wie bei X – ein Repost ist öffentlich
-      const toggle = el('button', 'xtt-toggle', retweet.state.on ? t('undoRepost') : t('repost'));
-      const quote = el('button', 'xtt-toggle', t('quote'));
+      const toggle = el('button', 'xtt-toggle', retweet.state.on ? msg('undoRepost') : msg('repost'));
+      const quote = el('button', 'xtt-toggle', msg('quote'));
       toggle.addEventListener('click', (ev) => {
         ev.stopPropagation();
         extra.replaceChildren();
@@ -367,7 +367,7 @@
       extra.replaceChildren(menu);
     });
 
-    const like = button('like', t('like'), L.favorite_count, L.favorited);
+    const like = button('like', msg('like'), L.favorite_count, L.favorited);
     like.addEventListener('click', (e) => {
       e.stopPropagation();
       flip(like, (on) => mutate(on ? 'FavoriteTweet' : 'UnfavoriteTweet', { tweet_id: id }));
@@ -375,21 +375,21 @@
 
     const views = link('', `/${u.handle}/status/${id}/analytics`);
     views.className = 'xtt-act xtt-views';
-    views.title = t('views');
+    views.title = msg('views');
     views.append(icon('views'), el('span', null, fmt(Number(t.views?.count))));
 
-    const bookmark = button('bookmark', t('bookmark'), L.bookmark_count, L.bookmarked);
+    const bookmark = button('bookmark', msg('bookmark'), L.bookmark_count, L.bookmarked);
     bookmark.addEventListener('click', (e) => {
       e.stopPropagation();
       flip(bookmark, (on) => mutate(on ? 'CreateBookmark' : 'DeleteBookmark', { tweet_id: id }));
     });
 
-    const share = button('share', t('share'), 0, false);
+    const share = button('share', msg('share'), 0, false);
     share.addEventListener('click', async (e) => {
       e.stopPropagation();
       share.lastChild.textContent = await navigator.clipboard.writeText(url).then(
-        () => t('copied'),
-        () => t('copyFailed'),
+        () => msg('copied'),
+        () => msg('copyFailed'),
       );
       setTimeout(() => (share.lastChild.textContent = ''), 1500);
     });
@@ -409,8 +409,8 @@
 
     const label = () => {
       btn.textContent = list.hidden
-        ? `▸ ${t('showReplies')} (${replyCount})`
-        : `▾ ${t('hideReplies')}`;
+        ? `▸ ${msg('showReplies')} (${replyCount})`
+        : `▾ ${msg('hideReplies')}`;
     };
 
     function renderReplies(replies, cursor) {
@@ -427,11 +427,11 @@
       }
       shown += replies.length;
       if (cursor && replies.length && shown < replyCount) { // X liefert auch am Ende noch einen Cursor
-        const more = el('button', 'xtt-toggle', t('loadMore'));
+        const more = el('button', 'xtt-toggle', msg('loadMore'));
         more.addEventListener('click', async (e) => {
           e.stopPropagation();
           more.disabled = true;
-          more.textContent = t('loading');
+          more.textContent = msg('loading');
           try {
             const next = await fetchReplies(tweetId, cursor);
             more.remove();
@@ -454,11 +454,11 @@
         label();
         if (loaded) return [];
         loaded = true;
-        list.replaceChildren(el('div', 'xtt-muted', t('loading')));
+        list.replaceChildren(el('div', 'xtt-muted', msg('loading')));
         try {
           const { replies, cursor } = await fetchReplies(tweetId);
           list.replaceChildren();
-          if (!replies.length) list.append(el('div', 'xtt-muted', t('noReplies')));
+          if (!replies.length) list.append(el('div', 'xtt-muted', msg('noReplies')));
           return renderReplies(replies, cursor);
         } catch (err) {
           loaded = false;
