@@ -24,6 +24,7 @@ budget keep their own button.
   |---|---|---|
   | Automatically expand all replies when opening a post | off | Expands everything on opening and while scrolling, visible replies first. At most 80 requests per post; stops while 50 of X's requests are still left for X itself. |
   | Widen the middle column | on | Middle column 1000 instead of 600 px, sidebars move outwards. Only in windows at least 1700 px wide. |
+  | Automatically show replies X hides as “probable spam” | on | Clicks X's “Show probable spam” button at the end of a post's replies (at most 10 times per post) and also loads such replies in the thread view (at most 3 extra pages per reply). Uses additional requests and respects the rate-limit reserve. |
 
 ## Languages
 

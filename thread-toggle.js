@@ -7,6 +7,10 @@
   const AUTO_REQUESTS_PER_POST = 80; // Budget fürs automatische Aufklappen je geöffnetem Beitrag
   const RATE_RESERVE = 50; // X erlaubt 300 TweetDetail-Abfragen / 15 Min.; der Rest bleibt für X selbst
   let rateRemaining = Infinity;
+  const MAX_SPAM_CLICKS = 10; // so oft klickt die Erweiterung X' Spam-Button pro Beitrag höchstens
+  const MAX_SPAM_PAGES = 3; // so viele Spam-Seiten lädt die Thread-Ansicht pro Antwort höchstens nach
+  // „wahrscheinlich Spam“ einblenden: Häkchen im Popup, standardmäßig an (kommt über bridge.js)
+  const spamEnabled = () => document.documentElement.dataset.xttShowSpam !== '0';
 
   // Sprache folgt X' Oberfläche (<html lang>), Texte aus i18n.js
   const lang = () => window.xttPick(document.documentElement.lang || navigator.language);
@@ -22,6 +26,7 @@
   XMLHttpRequest.prototype.open = function (method, url) {
     this._xttUrl = String(url);
     this._xttHeaders = {};
+    if (/\/TweetDetail\?/.test(this._xttUrl)) this.addEventListener('load', onXTweetDetail);
     return origOpen.apply(this, arguments);
   };
   XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
@@ -112,15 +117,14 @@
     const replies = [];
     const seen = new Set();
     let cursor = null;
+    let spamCursor = null; // „Wahrscheinlichen Spam anzeigen“: X hält diese Antworten hinter eigenem Cursor zurück
     for (const ins of instructions) {
       for (const entry of ins.entries || []) {
         const c = entry.content;
-        if (c.entryType === 'TimelineTimelineCursor') {
-          if (c.cursorType !== 'Top') cursor = c.value;
-          continue;
-        }
-        if (c.itemContent?.itemType === 'TimelineTimelineCursor') {
-          cursor = c.itemContent.value; // „Weitere Antworten anzeigen“
+        const cur = c.entryType === 'TimelineTimelineCursor' ? c : c.itemContent?.itemType === 'TimelineTimelineCursor' ? c.itemContent : null;
+        if (cur) {
+          if (cur.cursorType?.startsWith('ShowMoreThreads')) spamCursor = cur.value;
+          else if (cur.cursorType !== 'Top') cursor = cur.value;
           continue;
         }
         const items = c.items ? c.items.map((i) => i.item.itemContent) : [c.itemContent];
@@ -133,7 +137,7 @@
         }
       }
     }
-    return { replies, cursor };
+    return { replies, cursor, spamCursor };
   }
 
   // --- 3. Darstellung (nur textContent, nie innerHTML – Inhalte stammen von Fremden) ---
@@ -435,7 +439,7 @@
           try {
             const next = await fetchReplies(tweetId, cursor);
             more.remove();
-            renderReplies(next.replies, next.cursor);
+            renderReplies(next.replies, next.cursor || next.spamCursor);
           } catch (err) {
             more.disabled = false;
             more.textContent = '⚠ ' + err.message;
@@ -456,10 +460,16 @@
         loaded = true;
         list.replaceChildren(el('div', 'xtt-muted', msg('loading')));
         try {
-          const { replies, cursor } = await fetchReplies(tweetId);
+          let { replies, cursor, spamCursor } = await fetchReplies(tweetId);
+          // als „wahrscheinlich Spam“ zurückgehaltene Antworten gleich mitladen
+          for (let i = 0; spamCursor && spamEnabled() && i < MAX_SPAM_PAGES && rateRemaining > RATE_RESERVE; i++) {
+            const more = await fetchReplies(tweetId, spamCursor);
+            replies = replies.concat(more.replies);
+            spamCursor = more.spamCursor;
+          }
           list.replaceChildren();
           if (!replies.length) list.append(el('div', 'xtt-muted', msg('noReplies')));
-          return renderReplies(replies, cursor);
+          return renderReplies(replies, cursor || spamCursor);
         } catch (err) {
           loaded = false;
           list.replaceChildren(el('div', 'xtt-muted', '⚠ ' + err.message));
@@ -523,7 +533,36 @@
     if (autoPath !== path) runAuto(); // während des Ladens wurde ein anderer Beitrag geöffnet
   }
 
-  // --- 6. Buttons an die Antworten auf Statusseiten hängen ---
+  // --- 6. X' Button „Wahrscheinlichen Spam anzeigen“ selbst anklicken ---
+  // X' eigene TweetDetail-Antworten verraten, ob X Antworten als Spam zurückhält (Cursor „ShowMoreThreads“)
+  let spamPath = null; // Beitrag, für den X gerade Spam zurückhält
+  let spamClickPath = null; // Beitrag, auf den sich spamClicks bezieht
+  let spamClicks = 0;
+  function onXTweetDetail() {
+    const remaining = this.getResponseHeader('x-rate-limit-remaining');
+    if (remaining !== null) rateRemaining = Number(remaining);
+    try {
+      if (/"cursorType":"ShowMoreThreads/.test(this.responseText)) spamPath = location.pathname;
+    } catch (e) { /* Antwort nicht als Text lesbar */ }
+  }
+
+  function clickSpamButton() {
+    if (spamPath !== location.pathname) return;
+    if (spamClickPath !== location.pathname) {
+      spamClickPath = location.pathname;
+      spamClicks = 0;
+    }
+    if (spamClicks >= MAX_SPAM_CLICKS || rateRemaining <= RATE_RESERVE) return;
+    // Der Button ist die letzte Zelle der Liste: kein Beitrag, genau ein Button, kein data-testid (Text ist sprachabhängig)
+    const cell = [...document.querySelectorAll('[data-testid="cellInnerDiv"]')].filter((c) => c.textContent.trim()).at(-1);
+    const buttons = cell && !cell.querySelector('article') ? cell.querySelectorAll('button[role="button"]') : [];
+    if (buttons.length !== 1 || buttons[0].dataset.testid) return;
+    spamPath = null; // erst die nächste Antwort von X entscheidet, ob noch mehr Spam zurückgehalten wird
+    spamClicks++;
+    buttons[0].click();
+  }
+
+  // --- 7. Buttons an die Antworten auf Statusseiten hängen ---
   const nodes = new Map(); // tweetId -> Knoten; bleibt erhalten, wenn X Zellen beim Scrollen neu aufbaut
   let confirmedPath = null; // Pfad, dessen Hauptbeitrag X bereits angezeigt hat
 
@@ -540,6 +579,7 @@
   function scan() {
     const pathId = location.pathname.match(/\/status\/(\d+)/)?.[1];
     if (!pathId) return;
+    if (spamEnabled()) clickSpamButton();
     // Beim Runterscrollen baut X den Hauptbeitrag oben ab – dann liegt alles Sichtbare unter ihm
     const focal = document.querySelector('article[data-testid="tweet"][tabindex="-1"]');
     if (focal && tweetIdOf(focal) === pathId) confirmedPath = location.pathname;

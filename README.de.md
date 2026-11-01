@@ -24,6 +24,7 @@ behalten ihren eigenen Button.
   |---|---|---|
   | Beim Öffnen eines Beitrags alle Antworten automatisch aufklappen | aus | Klappt beim Öffnen und Runterscrollen alles selbst auf, sichtbare Antworten zuerst. Höchstens 80 Abfragen pro Beitrag; stoppt, solange noch 50 von X' Abfragen für X selbst übrig sind. |
   | Mittelspalte verbreitern | an | Mittelspalte 1000 statt 600 px, Seitenleisten rücken nach außen. Nur bei Fenstern ab 1700 px Breite. |
+  | Als „wahrscheinlich Spam“ ausgeblendete Antworten automatisch einblenden | an | Klickt X' Button „Wahrscheinlichen Spam anzeigen“ am Ende der Antworten selbst an (höchstens 10-mal pro Beitrag) und lädt solche Antworten auch in der Thread-Ansicht (höchstens 3 Zusatzseiten pro Antwort). Braucht zusätzliche Abfragen und hält die Reserve für X' Abfrage-Limit ein. |
 
 ## Sprachen
 

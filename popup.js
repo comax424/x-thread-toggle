@@ -5,7 +5,7 @@ for (const el of document.querySelectorAll('[data-i18n]')) {
   el.textContent = window.xttStrings[lang][el.dataset.i18n] ?? window.xttStrings.en[el.dataset.i18n];
 }
 
-const defaults = { autoExpand: false, wide: true };
+const defaults = { autoExpand: false, wide: true, showSpam: true };
 chrome.storage.sync.get(defaults, (s) => {
   for (const key of Object.keys(defaults)) {
     const box = document.getElementById(key);

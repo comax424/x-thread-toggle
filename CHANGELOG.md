@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-01
+
+### Added
+
+- New setting “Automatically show replies X hides as ‘probable spam’” (on by default):
+  - clicks X's own “Show probable spam” button at the end of a post's replies, at most 10 times per post;
+  - the thread view follows X's `ShowMoreThreads` cursor and loads replies held back as probable spam,
+    at most 3 extra pages per reply. Before, such replies showed up as “No visible replies”.
+  - Both respect the reserve for X's rate limit. Setting texts in all 29 languages.
+- The extension now also reads the remaining request count from X's own conversation requests.
+- Smoke test covers loading replies held back as probable spam, with the setting on and off.
+
 ## [1.1.1] - 2026-11-01
 
 ### Fixed
@@ -41,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/comax424/x-thread-toggle/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/comax424/x-thread-toggle/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/comax424/x-thread-toggle/releases/tag/v1.0.0

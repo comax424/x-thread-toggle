@@ -1,5 +1,6 @@
 // Smoke test: runs the real code of thread-toggle.js with a minimal DOM stand-in.
-// Usage: node test/render-test.js   (renders a sample post in several languages and clicks Reply/Repost)
+// Usage: node test/render-test.js   (renders a sample post in several languages and clicks Reply/Repost,
+//        then loads a reply whose children X partly holds back as "probable spam", with the setting on and off)
 const fs = require('fs');
 const dir = process.argv[2] || require('path').join(__dirname, '..');
 const label = process.argv[3] || 'render';
@@ -19,10 +20,11 @@ class El {
 }
 globalThis.window = globalThis;
 globalThis.document = { createElement: (t) => new El(t), querySelector: () => null, querySelectorAll: () => [], documentElement: { dataset: {}, lang: 'de' } };
-globalThis.XMLHttpRequest = class {}; globalThis.MutationObserver = class { observe() {} };
+globalThis.XMLHttpRequest = class { open() {} setRequestHeader() {} addEventListener() {} };
+globalThis.MutationObserver = class { observe() {} };
 globalThis.requestAnimationFrame = () => {}; globalThis.location = { pathname: '/', origin: 'https://x.com' };
 eval(fs.readFileSync(dir + '/i18n.js', 'utf8'));
-const src = fs.readFileSync(dir + '/thread-toggle.js', 'utf8').replace(/\}\)\(\);\s*$/, 'globalThis.__x = { renderTweet };\n})();');
+const src = fs.readFileSync(dir + '/thread-toggle.js', 'utf8').replace(/\}\)\(\);\s*$/, 'globalThis.__x = { renderTweet, createNode };\n})();');
 eval(src);
 const tweet = { rest_id: '1', views: { count: '1234' },
   core: { user_results: { result: { core: { name: 'Test', screen_name: 'test' }, avatar: { image_url: 'a.jpg' } } } },
@@ -40,3 +42,34 @@ for (const lang of ['de', 'en', 'pl', 'el']) {
     console.log(`${label} ${lang}: OK | reply box: "${placeholder}" | repost menu: "${menu}"`);
   } catch (e) { console.log(`${label} ${lang}: FAILED → ${e.message}`); process.exitCode = 1; }
 }
+
+// "Probable spam": X returns reply A, holds B and C back behind "ShowMoreThreads" cursors
+const reply = (id) => ({ ...tweet, rest_id: id,
+  legacy: { ...tweet.legacy, full_text: 'reply ' + id, display_text_range: [0, 7], in_reply_to_status_id_str: '100', reply_count: 0 } });
+const page = (ids, cursors) => ({ data: { threaded_conversation_with_injections_v2: { instructions: [{ entries: [
+  ...ids.map((id) => ({ entryId: 'conversationthread-' + id, content: { entryType: 'TimelineTimelineModule',
+    items: [{ item: { itemContent: { itemType: 'TimelineTweet', tweet_results: { result: { __typename: 'Tweet', ...reply(id) } } } } }] } })),
+  ...cursors.map(([cursorType, value]) => ({ entryId: 'cursor-' + value, content: { entryType: 'TimelineTimelineCursor', cursorType, value } })),
+] }] } } });
+const pages = { '': page(['A'], [['ShowMoreThreads', 'S1']]), S1: page(['B'], [['ShowMoreThreads', 'S2']]), S2: page(['C'], []) };
+globalThis.fetch = async (url) => {
+  const v = JSON.parse(new URL(url).searchParams.get('variables'));
+  return { status: 200, ok: true, headers: { get: () => '250' }, json: async () => pages[v.cursor || ''] };
+};
+const xhr = new XMLHttpRequest(); // lets the extension learn the TweetDetail request like on x.com
+xhr.open('GET', 'https://x.com/i/api/graphql/q/TweetDetail?variables=%7B%7D&features=%7B%7D');
+xhr.setRequestHeader('authorization', 'test');
+const collect = (el, cls, out = []) => { for (const c of el.children) if (typeof c !== 'string') { if (c.className === cls) out.push(c); collect(c, cls, out); } return out; };
+(async () => {
+  document.documentElement.lang = 'en';
+  for (const [setting, expected, loadMore] of [['1', 'A,B,C', false], ['0', 'A', true]]) {
+    document.documentElement.dataset.xttShowSpam = setting;
+    const node = __x.createNode('100', 3);
+    await node.load();
+    const got = collect(node.el, 'xtt-text').map((e) => e.textContent.replace('reply ', '')).join(',');
+    const hasMore = collect(node.el, 'xtt-toggle').some((b) => b.textContent === 'Load more replies');
+    const ok = got === expected && hasMore === loadMore;
+    console.log(`${label} spam ${setting === '1' ? 'on ' : 'off'}: ${ok ? 'OK' : 'FAILED'} | replies: ${got} | load-more button: ${hasMore}`);
+    if (!ok) process.exitCode = 1;
+  }
+})();

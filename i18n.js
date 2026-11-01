@@ -14,6 +14,8 @@ window.xttStrings = {
     popupAutoHint: "Höchstens 80 Abfragen pro Beitrag; sichtbare Antworten zuerst. Stoppt, bevor X' Abfrage-Limit knapp wird. Nicht erreichte Äste behalten ihren Button.",
     popupWide: "Mittelspalte verbreitern (1000 statt 600 px)",
     popupWideHint: "Nur bei Fenstern ab 1700 px Breite. Seitenleisten rücken nach außen.",
+    popupSpam: "Als „wahrscheinlich Spam“ ausgeblendete Antworten automatisch einblenden",
+    popupSpamHint: "Öffnet X' Button „Wahrscheinlichen Spam anzeigen“ selbst und lädt solche Antworten auch in der Thread-Ansicht. Braucht zusätzliche Abfragen.",
   },
   en: {
     showReplies: "Show replies", hideReplies: "Hide replies", loadMore: "Load more replies", loading: "Loading …",
@@ -28,6 +30,8 @@ window.xttStrings = {
     popupAutoHint: "At most 80 requests per post; visible replies first. Stops before X's rate limit runs low. Branches not reached keep their button.",
     popupWide: "Widen the middle column (1000 instead of 600 px)",
     popupWideHint: "Only in windows at least 1700 px wide. Sidebars move outwards.",
+    popupSpam: "Automatically show replies X hides as “probable spam”",
+    popupSpamHint: "Opens X's “Show probable spam” button and loads such replies in the thread view too. Uses additional requests.",
   },
   fr: {
     showReplies: "Afficher les réponses", hideReplies: "Masquer les réponses", loadMore: "Charger plus de réponses", loading: "Chargement …",
@@ -42,6 +46,8 @@ window.xttStrings = {
     popupAutoHint: "Au plus 80 requêtes par post ; réponses visibles d’abord. S’arrête avant que la limite de X ne soit atteinte. Les branches non atteintes gardent leur bouton.",
     popupWide: "Élargir la colonne centrale (1000 au lieu de 600 px)",
     popupWideHint: "Uniquement pour les fenêtres d’au moins 1700 px de large. Les barres latérales se déplacent vers l’extérieur.",
+    popupSpam: "Afficher automatiquement les réponses que X masque comme « spam probable »",
+    popupSpamHint: "Ouvre le bouton « Afficher le spam probable » de X et charge aussi ces réponses dans la vue en fil. Utilise des requêtes supplémentaires.",
   },
   es: {
     showReplies: "Mostrar respuestas", hideReplies: "Ocultar respuestas", loadMore: "Cargar más respuestas", loading: "Cargando …",
@@ -56,6 +62,8 @@ window.xttStrings = {
     popupAutoHint: "Como máximo 80 solicitudes por post; primero las respuestas visibles. Se detiene antes de que se agote el límite de X. Las ramas no alcanzadas conservan su botón.",
     popupWide: "Ensanchar la columna central (1000 en lugar de 600 px)",
     popupWideHint: "Solo en ventanas de al menos 1700 px de ancho. Las barras laterales se desplazan hacia fuera.",
+    popupSpam: "Mostrar automáticamente las respuestas que X oculta como «probable spam»",
+    popupSpamHint: "Abre el botón «Mostrar probable spam» de X y carga también esas respuestas en la vista de hilos. Usa solicitudes adicionales.",
   },
   it: {
     showReplies: "Mostra risposte", hideReplies: "Nascondi risposte", loadMore: "Carica altre risposte", loading: "Caricamento …",
@@ -70,6 +78,8 @@ window.xttStrings = {
     popupAutoHint: "Al massimo 80 richieste per post; prima le risposte visibili. Si ferma prima che il limite di X si esaurisca. I rami non raggiunti mantengono il loro pulsante.",
     popupWide: "Allarga la colonna centrale (1000 invece di 600 px)",
     popupWideHint: "Solo in finestre larghe almeno 1700 px. Le barre laterali si spostano verso l’esterno.",
+    popupSpam: "Mostra automaticamente le risposte che X nasconde come «probabile spam»",
+    popupSpamHint: "Apre il pulsante «Mostra probabile spam» di X e carica queste risposte anche nella vista thread. Usa richieste aggiuntive.",
   },
   pt: {
     showReplies: "Mostrar respostas", hideReplies: "Ocultar respostas", loadMore: "Carregar mais respostas", loading: "Carregando …",
@@ -84,6 +94,8 @@ window.xttStrings = {
     popupAutoHint: "No máximo 80 solicitações por post; respostas visíveis primeiro. Para antes que o limite do X se esgote. Ramos não alcançados mantêm o seu botão.",
     popupWide: "Alargar a coluna central (1000 em vez de 600 px)",
     popupWideHint: "Apenas em janelas com pelo menos 1700 px de largura. As barras laterais deslocam-se para fora.",
+    popupSpam: "Mostrar automaticamente as respostas que o X oculta como “provável spam”",
+    popupSpamHint: "Abre o botão “Mostrar provável spam” do X e carrega essas respostas também na vista de threads. Usa solicitações adicionais.",
   },
   nl: {
     showReplies: "Reacties tonen", hideReplies: "Reacties verbergen", loadMore: "Meer reacties laden", loading: "Laden …",
@@ -98,6 +110,8 @@ window.xttStrings = {
     popupAutoHint: "Maximaal 80 verzoeken per post; zichtbare reacties eerst. Stopt voordat de limiet van X opraakt. Takken die niet bereikt zijn, behouden hun knop.",
     popupWide: "Middelste kolom verbreden (1000 in plaats van 600 px)",
     popupWideHint: "Alleen in vensters van minstens 1700 px breed. Zijbalken schuiven naar buiten.",
+    popupSpam: "Reacties die X als „waarschijnlijk spam” verbergt automatisch tonen",
+    popupSpamHint: "Opent de knop „Waarschijnlijke spam tonen” van X en laadt zulke reacties ook in de threadweergave. Gebruikt extra verzoeken.",
   },
   pl: {
     showReplies: "Pokaż odpowiedzi", hideReplies: "Ukryj odpowiedzi", loadMore: "Wczytaj więcej odpowiedzi", loading: "Wczytywanie …",
@@ -112,6 +126,8 @@ window.xttStrings = {
     popupAutoHint: "Maksymalnie 80 zapytań na wpis; najpierw widoczne odpowiedzi. Zatrzymuje się, zanim limit X się wyczerpie. Nieosiągnięte gałęzie zachowują swój przycisk.",
     popupWide: "Poszerz środkową kolumnę (1000 zamiast 600 px)",
     popupWideHint: "Tylko w oknach o szerokości co najmniej 1700 px. Paski boczne przesuwają się na zewnątrz.",
+    popupSpam: "Automatycznie pokazuj odpowiedzi ukryte przez X jako „prawdopodobny spam”",
+    popupSpamHint: "Otwiera przycisk X „Pokaż prawdopodobny spam” i wczytuje takie odpowiedzi także w widoku wątków. Zużywa dodatkowe zapytania.",
   },
   cs: {
     showReplies: "Zobrazit odpovědi", hideReplies: "Skrýt odpovědi", loadMore: "Načíst další odpovědi", loading: "Načítání …",
@@ -126,6 +142,8 @@ window.xttStrings = {
     popupAutoHint: "Nejvýše 80 požadavků na příspěvek; nejprve viditelné odpovědi. Zastaví se dřív, než se limit X vyčerpá. Nedosažené větve si ponechají své tlačítko.",
     popupWide: "Rozšířit prostřední sloupec (1000 místo 600 px)",
     popupWideHint: "Jen v oknech širokých alespoň 1700 px. Postranní panely se posunou ven.",
+    popupSpam: "Automaticky zobrazit odpovědi, které X skrývá jako „pravděpodobný spam“",
+    popupSpamHint: "Otevře tlačítko X „Zobrazit pravděpodobný spam“ a načte tyto odpovědi i v zobrazení vláken. Spotřebuje další požadavky.",
   },
   sk: {
     showReplies: "Zobraziť odpovede", hideReplies: "Skryť odpovede", loadMore: "Načítať ďalšie odpovede", loading: "Načítava sa …",
@@ -140,6 +158,8 @@ window.xttStrings = {
     popupAutoHint: "Najviac 80 požiadaviek na príspevok; najprv viditeľné odpovede. Zastaví sa skôr, než sa limit X vyčerpá. Nedosiahnuté vetvy si ponechajú svoje tlačidlo.",
     popupWide: "Rozšíriť stredný stĺpec (1000 namiesto 600 px)",
     popupWideHint: "Len v oknách širokých aspoň 1700 px. Bočné panely sa posunú von.",
+    popupSpam: "Automaticky zobraziť odpovede, ktoré X skrýva ako „pravdepodobný spam“",
+    popupSpamHint: "Otvorí tlačidlo X „Zobraziť pravdepodobný spam“ a načíta tieto odpovede aj v zobrazení vlákien. Spotrebuje ďalšie požiadavky.",
   },
   sl: {
     showReplies: "Pokaži odgovore", hideReplies: "Skrij odgovore", loadMore: "Naloži več odgovorov", loading: "Nalaganje …",
@@ -154,6 +174,8 @@ window.xttStrings = {
     popupAutoHint: "Največ 80 zahtev na objavo; najprej vidni odgovori. Ustavi se, preden zmanjka omejitve X. Nedoseženi kraki obdržijo svoj gumb.",
     popupWide: "Razširi srednji stolpec (1000 namesto 600 px)",
     popupWideHint: "Samo v oknih, širokih vsaj 1700 px. Stranski vrstici se pomakneta navzven.",
+    popupSpam: "Samodejno pokaži odgovore, ki jih X skrije kot »verjetno neželeno«",
+    popupSpamHint: "Odpre gumb X »Pokaži verjetno neželeno vsebino« in naloži takšne odgovore tudi v pogledu niti. Porabi dodatne zahteve.",
   },
   hr: {
     showReplies: "Prikaži odgovore", hideReplies: "Sakrij odgovore", loadMore: "Učitaj još odgovora", loading: "Učitavanje …",
@@ -168,6 +190,8 @@ window.xttStrings = {
     popupAutoHint: "Najviše 80 zahtjeva po objavi; prvo vidljivi odgovori. Zaustavlja se prije nego što X-ovo ograničenje ponestane. Nedosegnute grane zadržavaju svoj gumb.",
     popupWide: "Proširi srednji stupac (1000 umjesto 600 px)",
     popupWideHint: "Samo u prozorima širine najmanje 1700 px. Bočne trake pomiču se prema van.",
+    popupSpam: "Automatski prikaži odgovore koje X skriva kao „vjerojatno neželjeno“",
+    popupSpamHint: "Otvara X-ov gumb „Prikaži vjerojatno neželjeno“ i učitava takve odgovore i u prikazu niti. Troši dodatne zahtjeve.",
   },
   hu: {
     showReplies: "Válaszok megjelenítése", hideReplies: "Válaszok elrejtése", loadMore: "További válaszok betöltése", loading: "Betöltés …",
@@ -182,6 +206,8 @@ window.xttStrings = {
     popupAutoHint: "Legfeljebb 80 kérés bejegyzésenként; először a látható válaszok. Leáll, mielőtt az X korlátja kimerülne. Az el nem ért ágak megtartják a gombjukat.",
     popupWide: "Középső oszlop szélesítése (600 helyett 1000 px)",
     popupWideHint: "Csak legalább 1700 px széles ablakokban. Az oldalsávok kifelé mozdulnak.",
+    popupSpam: "Az X által „valószínűleg spamként” elrejtett válaszok automatikus megjelenítése",
+    popupSpamHint: "Megnyitja az X „Valószínű spam megjelenítése” gombját, és a szálnézetben is betölti ezeket a válaszokat. További kéréseket használ.",
   },
   ro: {
     showReplies: "Afișează răspunsurile", hideReplies: "Ascunde răspunsurile", loadMore: "Încarcă mai multe răspunsuri", loading: "Se încarcă …",
@@ -196,6 +222,8 @@ window.xttStrings = {
     popupAutoHint: "Cel mult 80 de cereri per postare; mai întâi răspunsurile vizibile. Se oprește înainte ca limita X să se epuizeze. Ramurile neatinse își păstrează butonul.",
     popupWide: "Lărgește coloana din mijloc (1000 în loc de 600 px)",
     popupWideHint: "Doar în ferestre de cel puțin 1700 px lățime. Barele laterale se mută spre exterior.",
+    popupSpam: "Afișează automat răspunsurile pe care X le ascunde ca „probabil spam”",
+    popupSpamHint: "Deschide butonul X „Afișează probabil spam” și încarcă aceste răspunsuri și în vizualizarea firului. Folosește cereri suplimentare.",
   },
   bg: {
     showReplies: "Покажи отговорите", hideReplies: "Скрий отговорите", loadMore: "Зареди още отговори", loading: "Зареждане …",
@@ -210,6 +238,8 @@ window.xttStrings = {
     popupAutoHint: "Най-много 80 заявки на публикация; първо видимите отговори. Спира, преди лимитът на X да се изчерпа. Недостигнатите клонове запазват бутона си.",
     popupWide: "Разширяване на средната колона (1000 вместо 600 px)",
     popupWideHint: "Само в прозорци с ширина поне 1700 px. Страничните ленти се преместват навън.",
+    popupSpam: "Автоматично показване на отговорите, които X скрива като „вероятен спам“",
+    popupSpamHint: "Отваря бутона на X „Показване на вероятен спам“ и зарежда тези отговори и в изгледа на нишки. Използва допълнителни заявки.",
   },
   el: {
     showReplies: "Εμφάνιση απαντήσεων", hideReplies: "Απόκρυψη απαντήσεων", loadMore: "Φόρτωση περισσότερων απαντήσεων", loading: "Φόρτωση …",
@@ -224,6 +254,8 @@ window.xttStrings = {
     popupAutoHint: "Το πολύ 80 αιτήματα ανά ανάρτηση· πρώτα οι ορατές απαντήσεις. Σταματά πριν εξαντληθεί το όριο του X. Οι κλάδοι που δεν φτάνει κρατούν το κουμπί τους.",
     popupWide: "Διεύρυνση της μεσαίας στήλης (1000 αντί για 600 px)",
     popupWideHint: "Μόνο σε παράθυρα πλάτους τουλάχιστον 1700 px. Οι πλαϊνές στήλες μετακινούνται προς τα έξω.",
+    popupSpam: "Αυτόματη εμφάνιση απαντήσεων που το X αποκρύπτει ως «πιθανό ανεπιθύμητο»",
+    popupSpamHint: "Ανοίγει το κουμπί του X «Εμφάνιση πιθανών ανεπιθύμητων» και φορτώνει τέτοιες απαντήσεις και στην προβολή νημάτων. Χρησιμοποιεί επιπλέον αιτήματα.",
   },
   da: {
     showReplies: "Vis svar", hideReplies: "Skjul svar", loadMore: "Indlæs flere svar", loading: "Indlæser …",
@@ -238,6 +270,8 @@ window.xttStrings = {
     popupAutoHint: "Højst 80 forespørgsler pr. opslag; synlige svar først. Stopper, før X’s grænse er ved at være opbrugt. Grene, der ikke nås, beholder deres knap.",
     popupWide: "Gør midterkolonnen bredere (1000 i stedet for 600 px)",
     popupWideHint: "Kun i vinduer, der er mindst 1700 px brede. Sidebjælkerne flytter udad.",
+    popupSpam: "Vis automatisk svar, som X skjuler som „sandsynlig spam“",
+    popupSpamHint: "Åbner X's knap „Vis sandsynlig spam“ og indlæser også sådanne svar i trådvisningen. Bruger ekstra forespørgsler.",
   },
   sv: {
     showReplies: "Visa svar", hideReplies: "Dölj svar", loadMore: "Läs in fler svar", loading: "Läser in …",
@@ -252,6 +286,8 @@ window.xttStrings = {
     popupAutoHint: "Högst 80 förfrågningar per inlägg; synliga svar först. Stannar innan X:s gräns tar slut. Grenar som inte nås behåller sin knapp.",
     popupWide: "Bredda mittkolumnen (1000 i stället för 600 px)",
     popupWideHint: "Endast i fönster som är minst 1700 px breda. Sidofälten flyttas utåt.",
+    popupSpam: "Visa automatiskt svar som X döljer som ”trolig skräppost”",
+    popupSpamHint: "Öppnar X:s knapp ”Visa trolig skräppost” och läser även in sådana svar i trådvyn. Använder extra förfrågningar.",
   },
   nb: {
     showReplies: "Vis svar", hideReplies: "Skjul svar", loadMore: "Last inn flere svar", loading: "Laster inn …",
@@ -266,6 +302,8 @@ window.xttStrings = {
     popupAutoHint: "Maks 80 forespørsler per innlegg; synlige svar først. Stopper før grensen til X går tom. Grener som ikke nås, beholder knappen sin.",
     popupWide: "Gjør midtkolonnen bredere (1000 i stedet for 600 px)",
     popupWideHint: "Bare i vinduer som er minst 1700 px brede. Sidefeltene flyttes utover.",
+    popupSpam: "Vis automatisk svar som X skjuler som «sannsynlig søppelpost»",
+    popupSpamHint: "Åpner X sin knapp «Vis sannsynlig søppelpost» og laster også inn slike svar i trådvisningen. Bruker ekstra forespørsler.",
   },
   fi: {
     showReplies: "Näytä vastaukset", hideReplies: "Piilota vastaukset", loadMore: "Lataa lisää vastauksia", loading: "Ladataan …",
@@ -280,6 +318,8 @@ window.xttStrings = {
     popupAutoHint: "Enintään 80 pyyntöä julkaisua kohden; näkyvät vastaukset ensin. Pysähtyy ennen kuin X:n raja loppuu. Saavuttamattomat haarat säilyttävät painikkeensa.",
     popupWide: "Levennä keskipalstaa (1000 px 600 px:n sijaan)",
     popupWideHint: "Vain vähintään 1700 px leveissä ikkunoissa. Sivupalkit siirtyvät ulospäin.",
+    popupSpam: "Näytä automaattisesti vastaukset, jotka X piilottaa ”todennäköisenä roskapostina”",
+    popupSpamHint: "Avaa X:n painikkeen ”Näytä todennäköinen roskaposti” ja lataa tällaiset vastaukset myös ketjunäkymään. Käyttää lisäpyyntöjä.",
   },
   et: {
     showReplies: "Näita vastuseid", hideReplies: "Peida vastused", loadMore: "Laadi rohkem vastuseid", loading: "Laadimine …",
@@ -294,6 +334,8 @@ window.xttStrings = {
     popupAutoHint: "Kuni 80 päringut postituse kohta; esmalt nähtavad vastused. Peatub enne, kui X-i limiit otsa saab. Saavutamata harud säilitavad oma nupu.",
     popupWide: "Laienda keskmist veergu (1000 px 600 px asemel)",
     popupWideHint: "Ainult vähemalt 1700 px laiustes akendes. Külgribad liiguvad väljapoole.",
+    popupSpam: "Näita automaatselt vastuseid, mille X peidab kui „tõenäoline rämpspost“",
+    popupSpamHint: "Avab X-i nupu „Näita tõenäolist rämpsposti“ ja laadib sellised vastused ka lõimevaatesse. Kasutab lisapäringuid.",
   },
   lv: {
     showReplies: "Rādīt atbildes", hideReplies: "Paslēpt atbildes", loadMore: "Ielādēt vairāk atbilžu", loading: "Ielādē …",
@@ -308,6 +350,8 @@ window.xttStrings = {
     popupAutoHint: "Ne vairāk kā 80 pieprasījumu uz ierakstu; vispirms redzamās atbildes. Apstājas, pirms X ierobežojums beidzas. Nesasniegtie zari saglabā savu pogu.",
     popupWide: "Paplašināt vidējo kolonnu (1000, nevis 600 px)",
     popupWideHint: "Tikai logos, kuru platums ir vismaz 1700 px. Sānjoslas pārvietojas uz āru.",
+    popupSpam: "Automātiski rādīt atbildes, kuras X paslēpj kā “iespējamu surogātpastu”",
+    popupSpamHint: "Atver X pogu “Rādīt iespējamo surogātpastu” un ielādē šādas atbildes arī pavedienu skatā. Izmanto papildu pieprasījumus.",
   },
   lt: {
     showReplies: "Rodyti atsakymus", hideReplies: "Slėpti atsakymus", loadMore: "Įkelti daugiau atsakymų", loading: "Įkeliama …",
@@ -322,6 +366,8 @@ window.xttStrings = {
     popupAutoHint: "Ne daugiau kaip 80 užklausų vienam įrašui; pirmiausia matomi atsakymai. Sustoja, kol X limitas dar neišnaudotas. Nepasiektos šakos išlaiko savo mygtuką.",
     popupWide: "Praplatinti vidurinį stulpelį (1000 vietoj 600 px)",
     popupWideHint: "Tik languose, kurių plotis bent 1700 px. Šoninės juostos pasislenka į išorę.",
+    popupSpam: "Automatiškai rodyti atsakymus, kuriuos X slepia kaip „tikėtiną šlamštą“",
+    popupSpamHint: "Atidaro X mygtuką „Rodyti tikėtiną šlamštą“ ir įkelia tokius atsakymus ir gijų rodinyje. Naudoja papildomas užklausas.",
   },
   ga: {
     showReplies: "Taispeáin freagraí", hideReplies: "Folaigh freagraí", loadMore: "Lódáil tuilleadh freagraí", loading: "Á lódáil …",
@@ -336,6 +382,8 @@ window.xttStrings = {
     popupAutoHint: "80 iarratas ar a mhéad in aghaidh an phoist; freagraí infheicthe ar dtús. Stopann sé sula dtéann teorainn X i ndísc. Coinníonn craobhacha nár sroicheadh a gcnaipe.",
     popupWide: "Leathnaigh an colún láir (1000 in ionad 600 px)",
     popupWideHint: "I bhfuinneoga atá 1700 px ar leithead ar a laghad amháin. Bogann na barraí taoibh amach.",
+    popupSpam: "Taispeáin go huathoibríoch freagraí a fholaíonn X mar “turscar dóchúil”",
+    popupSpamHint: "Osclaíonn sé cnaipe X “Taispeáin turscar dóchúil” agus lódálann sé freagraí den sórt sin san amharc snáithe freisin. Úsáideann sé iarratais bhreise.",
   },
   mt: {
     showReplies: "Uri t-tweġibiet", hideReplies: "Aħbi t-tweġibiet", loadMore: "Tella’ aktar tweġibiet", loading: "Qed jitla’ …",
@@ -350,6 +398,8 @@ window.xttStrings = {
     popupAutoHint: "Mhux aktar minn 80 talba għal kull post; it-tweġibiet viżibbli l-ewwel. Jieqaf qabel ma jispiċċa l-limitu ta’ X. Il-friegħi li ma jintlaħqux iżommu l-buttuna tagħhom.",
     popupWide: "Wessa’ l-kolonna tan-nofs (1000 minflok 600 px)",
     popupWideHint: "Biss fi twieqi b’wisa’ ta’ mill-inqas 1700 px. Il-bars tal-ġenb jiċċaqilqu ’l barra.",
+    popupSpam: "Uri awtomatikament it-tweġibiet li X jaħbi bħala “probabbilment spam”",
+    popupSpamHint: "Jiftaħ il-buttuna ta’ X “Uri spam probabbli” u jtella’ dawn it-tweġibiet ukoll fil-veduta tal-ħajt. Juża talbiet addizzjonali.",
   },
   uk: {
     showReplies: "Показати відповіді", hideReplies: "Сховати відповіді", loadMore: "Завантажити більше відповідей", loading: "Завантаження …",
@@ -364,6 +414,8 @@ window.xttStrings = {
     popupAutoHint: "Не більше 80 запитів на допис; спочатку видимі відповіді. Зупиняється, перш ніж ліміт X вичерпається. Недосягнуті гілки зберігають свою кнопку.",
     popupWide: "Розширити середню колонку (1000 замість 600 px)",
     popupWideHint: "Лише у вікнах шириною щонайменше 1700 px. Бічні панелі зсуваються назовні.",
+    popupSpam: "Автоматично показувати відповіді, які X приховує як «імовірний спам»",
+    popupSpamHint: "Відкриває кнопку X «Показати імовірний спам» і завантажує такі відповіді також у перегляді гілок. Використовує додаткові запити.",
   },
   ru: {
     showReplies: "Показать ответы", hideReplies: "Скрыть ответы", loadMore: "Загрузить ещё ответы", loading: "Загрузка …",
@@ -378,6 +430,8 @@ window.xttStrings = {
     popupAutoHint: "Не более 80 запросов на пост; сначала видимые ответы. Останавливается, прежде чем лимит X исчерпается. Недостигнутые ветки сохраняют свою кнопку.",
     popupWide: "Расширить среднюю колонку (1000 вместо 600 px)",
     popupWideHint: "Только в окнах шириной не менее 1700 px. Боковые панели сдвигаются наружу.",
+    popupSpam: "Автоматически показывать ответы, которые X скрывает как «вероятный спам»",
+    popupSpamHint: "Открывает кнопку X «Показать вероятный спам» и загружает такие ответы также в просмотре веток. Использует дополнительные запросы.",
   },
   tr: {
     showReplies: "Yanıtları göster", hideReplies: "Yanıtları gizle", loadMore: "Daha fazla yanıt yükle", loading: "Yükleniyor …",
@@ -392,6 +446,8 @@ window.xttStrings = {
     popupAutoHint: "Gönderi başına en fazla 80 istek; önce görünür yanıtlar. X sınırı tükenmeden durur. Ulaşılamayan dallar düğmelerini korur.",
     popupWide: "Orta sütunu genişlet (600 yerine 1000 px)",
     popupWideHint: "Yalnızca en az 1700 px genişliğindeki pencerelerde. Kenar çubukları dışa doğru kayar.",
+    popupSpam: "X'in “olası spam” olarak gizlediği yanıtları otomatik göster",
+    popupSpamHint: "X'in “Olası spamı göster” düğmesini açar ve bu yanıtları konu görünümünde de yükler. Ek istek kullanır.",
   },
   ca: {
     showReplies: "Mostra les respostes", hideReplies: "Amaga les respostes", loadMore: "Carrega més respostes", loading: "S’està carregant …",
@@ -406,6 +462,8 @@ window.xttStrings = {
     popupAutoHint: "Com a màxim 80 peticions per publicació; primer les respostes visibles. S’atura abans que s’esgoti el límit d’X. Les branques no assolides conserven el seu botó.",
     popupWide: "Eixampla la columna central (1000 en lloc de 600 px)",
     popupWideHint: "Només en finestres d’almenys 1700 px d’amplada. Les barres laterals es desplacen cap a fora.",
+    popupSpam: "Mostra automàticament les respostes que X amaga com a «probable correu brossa»",
+    popupSpamHint: "Obre el botó d’X «Mostra el probable correu brossa» i carrega aquestes respostes també a la vista de fils. Fa servir peticions addicionals.",
   },
 };
 
