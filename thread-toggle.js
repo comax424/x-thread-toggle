@@ -227,6 +227,7 @@
   function renderTweet(t) {
     const u = userOf(t);
     const card = el('div', 'xtt-tweet');
+    card.dataset.tid = t.rest_id; // damit X' eigene Kopie desselben Beitrags ausgeblendet werden kann
     const avatar = el('img', 'xtt-avatar');
     if (u.avatar) avatar.src = u.avatar;
     avatar.alt = '';
@@ -483,6 +484,7 @@
       if (!loaded) return expandAll(node);
       list.hidden = !list.hidden;
       label();
+      requestScan(); // Ein-/Ausklappen ändert nur ein Attribut, das löst keinen Durchlauf aus
     });
 
     label();
@@ -603,15 +605,38 @@
       if (article.nextElementSibling !== node.el) article.after(node.el);
       if (auto) autoEnqueue(id, node);
     }
+    hideNativeDuplicates();
+  }
+
+  // X zeigt Antworten auf eine Antwort manchmal selbst als Kette direkt darunter. Solange dieselben Beiträge
+  // in einer aufgeklappten Thread-Ansicht stehen, wird X' Zelle ausgeblendet, sonst stünden sie doppelt da.
+  function hideNativeDuplicates() {
+    const inTree = new Set();
+    for (const card of document.querySelectorAll('.xtt-replies .xtt-tweet')) {
+      if (card.offsetParent !== null) inTree.add(card.dataset.tid); // nur sichtbar aufgeklappte
+    }
+    // X verwendet Zellen für andere Beiträge wieder: auch schon ausgeblendete Zellen jedes Mal neu prüfen
+    const cells = new Set(document.querySelectorAll('[data-xtt-dup]'));
+    for (const article of document.querySelectorAll('article[data-testid="tweet"][tabindex="0"]')) {
+      const cell = article.closest('[data-testid="cellInnerDiv"]');
+      if (cell) cells.add(cell);
+    }
+    for (const cell of cells) {
+      const article = cell.querySelector('article[data-testid="tweet"][tabindex="0"]');
+      const dup = !!article && !article.closest('.xtt-thread') && inTree.has(tweetIdOf(article));
+      if (dup) cell.dataset.xttDup = '1';
+      else delete cell.dataset.xttDup;
+    }
   }
 
   let scheduled = false;
-  new MutationObserver(() => {
+  function requestScan() {
     if (scheduled) return;
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
       scan();
     });
-  }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+  new MutationObserver(requestScan).observe(document.documentElement, { childList: true, subtree: true });
 })();

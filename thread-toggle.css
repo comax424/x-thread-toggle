@@ -36,6 +36,8 @@
   }
 }
 .xtt-replies[hidden] { display: none; }
+/* X' eigene Kopie eines Beitrags, der schon in der aufgeklappten Thread-Ansicht steht */
+[data-testid="cellInnerDiv"][data-xtt-dup] { display: none !important; }
 .xtt-item { margin: 10px 0; }
 
 .xtt-tweet { display: flex; gap: 8px; }

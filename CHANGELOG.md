@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-11-09
+
+### Fixed
+
+- A reply could appear twice: once indented in the expanded thread view and once more below it, because X itself
+  sometimes shows a reply to a reply right underneath as a conversation chain. While a reply is open in the thread
+  view, X's own copy of it is now hidden; collapsing the thread view shows it again. Cells that X reuses for other
+  posts are re-checked every time, so nothing else stays hidden.
+
 ## [1.2.0] - 2026-11-01
 
 ### Added
@@ -53,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/comax424/x-thread-toggle/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/comax424/x-thread-toggle/compare/v1.0.0...v1.1.0

@@ -1,6 +1,7 @@
 // Smoke test: runs the real code of thread-toggle.js with a minimal DOM stand-in.
 // Usage: node test/render-test.js   (renders a sample post in several languages and clicks Reply/Repost,
-//        then loads a reply whose children X partly holds back as "probable spam", with the setting on and off)
+//        then loads a reply whose children X partly holds back as "probable spam", with the setting on and off,
+//        and checks that X's own copy of a reply is hidden only while the same reply is open in the thread view)
 const fs = require('fs');
 const dir = process.argv[2] || require('path').join(__dirname, '..');
 const label = process.argv[3] || 'render';
@@ -24,7 +25,7 @@ globalThis.XMLHttpRequest = class { open() {} setRequestHeader() {} addEventList
 globalThis.MutationObserver = class { observe() {} };
 globalThis.requestAnimationFrame = () => {}; globalThis.location = { pathname: '/', origin: 'https://x.com' };
 eval(fs.readFileSync(dir + '/i18n.js', 'utf8'));
-const src = fs.readFileSync(dir + '/thread-toggle.js', 'utf8').replace(/\}\)\(\);\s*$/, 'globalThis.__x = { renderTweet, createNode };\n})();');
+const src = fs.readFileSync(dir + '/thread-toggle.js', 'utf8').replace(/\}\)\(\);\s*$/, 'globalThis.__x = { renderTweet, createNode, hideNativeDuplicates };\n})();');
 eval(src);
 const tweet = { rest_id: '1', views: { count: '1234' },
   core: { user_results: { result: { core: { name: 'Test', screen_name: 'test' }, avatar: { image_url: 'a.jpg' } } } },
@@ -72,4 +73,30 @@ const collect = (el, cls, out = []) => { for (const c of el.children) if (typeof
     console.log(`${label} spam ${setting === '1' ? 'on ' : 'off'}: ${ok ? 'OK' : 'FAILED'} | replies: ${got} | load-more button: ${hasMore}`);
     if (!ok) process.exitCode = 1;
   }
+
+  // Duplicates: X itself shows reply 201 right below its parent, the thread view shows 201 as well
+  const card = __x.renderTweet(reply('201'));
+  if (card.dataset.tid !== '201') { console.log(`${label} duplicates: FAILED | card without tweet id`); process.exitCode = 1; }
+  const nativeCell = (id) => {
+    const cell = { dataset: {} };
+    cell.article = { closest: (s) => (s === '.xtt-thread' ? null : cell),
+      querySelector: () => ({ closest: () => ({ getAttribute: () => `/user/status/${id}` }) }) };
+    cell.querySelector = () => cell.article;
+    return cell;
+  };
+  const cells = [nativeCell('201'), nativeCell('202')];
+  const treeCards = [{ dataset: { tid: '201' }, offsetParent: {} }];
+  const realQuery = document.querySelectorAll;
+  document.querySelectorAll = (s) => (s === '.xtt-replies .xtt-tweet' ? treeCards
+    : s === '[data-xtt-dup]' ? cells.filter((c) => 'xttDup' in c.dataset)
+    : s.startsWith('article') ? cells.map((c) => c.article) : []);
+  const state = () => cells.map((c) => ('xttDup' in c.dataset ? 'hidden' : 'shown')).join('/');
+  __x.hideNativeDuplicates(); const open = state();              // 201 open in the thread view
+  treeCards[0].offsetParent = null; __x.hideNativeDuplicates(); const closed = state(); // collapsed
+  treeCards[0].offsetParent = {}; __x.hideNativeDuplicates();
+  cells[0].article = nativeCell('203').article; __x.hideNativeDuplicates(); const reused = state(); // X reuses the cell for 203
+  document.querySelectorAll = realQuery;
+  const dupOk = open === 'hidden/shown' && closed === 'shown/shown' && reused === 'shown/shown';
+  console.log(`${label} duplicates: ${dupOk ? 'OK' : 'FAILED'} | open: ${open} | collapsed: ${closed} | cell reused: ${reused}`);
+  if (!dupOk) process.exitCode = 1;
 })();
