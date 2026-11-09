@@ -64,6 +64,20 @@ install a newer version the same way; your settings are kept. If nothing appears
 the Chrome ZIP and a Firefox ZIP for signing on addons.mozilla.org. The code is the same for both;
 for Firefox the script only adds the add-on ID, the minimum version and the data-collection declaration to `manifest.json`.
 
+### Signing the Firefox package (maintainers)
+
+Firefox only installs signed add-ons permanently. Signing is free and done by Mozilla; the add-on stays unlisted.
+
+1. Test first: in Firefox open `about:debugging` → **This Firefox** → **Load Temporary Add-on…** and select
+   `dist/firefox/manifest.json`. Mozilla accepts every version number only once, so fix problems before uploading.
+2. Open <https://addons.mozilla.org/en-US/developers/> and log in with a Mozilla account.
+3. Click **Submit a New Add-on** (the first time, accept the developer agreement).
+4. Choose **On your own** and click **Continue**.
+5. Under **Select a file**, upload `dist/x-thread-toggle-<version>-firefox.zip` and wait for the validation.
+6. When asked whether source code is needed, answer **No** (the code is not minified or bundled).
+7. Mozilla signs the file and sends an email. Download the signed `.xpi` from the version page and attach it
+   to the GitHub release as `x-thread-toggle-<version>-firefox.xpi`.
+
 ## Privacy
 
 - The extension only runs on `https://x.com/*` and requests a single permission: `storage`, for its three settings

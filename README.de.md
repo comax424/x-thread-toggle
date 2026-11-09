@@ -64,6 +64,20 @@ bei der Erweiterung den Reiter **Berechtigungen** prüfen.
 das Chrome-ZIP und ein Firefox-ZIP zum Signieren auf addons.mozilla.org. Der Code ist für beide gleich;
 für Firefox ergänzt das Skript in `manifest.json` nur die Add-on-ID, die Mindestversion und die Angabe zur Datenerhebung.
 
+### Firefox-Paket signieren (für Maintainer)
+
+Firefox installiert nur signierte Add-ons dauerhaft. Mozilla signiert kostenlos; das Add-on bleibt ungelistet.
+
+1. Zuerst testen: in Firefox `about:debugging` → **Dieser Firefox** → **Temporäres Add-on laden…** und
+   `dist/firefox/manifest.json` auswählen. Mozilla nimmt jede Versionsnummer nur einmal an, Fehler also vor dem Hochladen beheben.
+2. <https://addons.mozilla.org/en-US/developers/> öffnen und mit einem Mozilla-Konto anmelden.
+3. **Submit a New Add-on** klicken (beim ersten Mal die Entwicklervereinbarung bestätigen).
+4. **On your own** wählen und **Continue** klicken.
+5. Unter **Select a file** die Datei `dist/x-thread-toggle-<version>-firefox.zip` hochladen und die Prüfung abwarten.
+6. Bei der Frage nach dem Quellcode **No** wählen (der Code ist nicht minifiziert oder gebündelt).
+7. Mozilla signiert die Datei und schickt eine E-Mail. Die signierte `.xpi` auf der Versionsseite herunterladen und
+   als `x-thread-toggle-<version>-firefox.xpi` an das GitHub-Release hängen.
+
 ## Datenschutz
 
 - Die Erweiterung läuft nur auf `https://x.com/*` und verlangt eine einzige Berechtigung: `storage`, für ihre drei Einstellungen
