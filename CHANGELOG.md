@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   addons.mozilla.org. The extension's code is the same as in 1.2.1.
 - `build.sh` builds the Chrome ZIP and the Firefox package from a git ref. For Firefox it adds the add-on ID,
   the minimum version and the data collection declaration (`none`) to `manifest.json`.
+- Extension icon: a small reply tree (three indented replies with avatars) instead of the browser's default
+  puzzle piece or letter. The source is `icons/icon.svg`.
 
 ### Fixed
 

@@ -7,7 +7,7 @@
 set -eu
 cd "$(dirname "$0")"
 ref=${1:-HEAD}
-files="manifest.json i18n.js thread-toggle.js thread-toggle.css bridge.js popup.html popup.js _locales LICENSE"
+files="manifest.json i18n.js thread-toggle.js thread-toggle.css bridge.js popup.html popup.js _locales icons LICENSE"
 version=$(git show "$ref:manifest.json" | node -p 'JSON.parse(require("fs").readFileSync(0, "utf8")).version')
 
 rm -rf dist && mkdir -p dist/firefox
