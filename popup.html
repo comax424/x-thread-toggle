@@ -7,13 +7,16 @@
     label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
     p { margin: 10px 0 0; font-size: 12px; color: #536471; }
     label.next { margin-top: 16px; }
+    h1 { margin: 0 0 12px; font-size: 15px; }
+    h1 span { font-weight: normal; color: #536471; }
     @media (prefers-color-scheme: dark) {
       body { background: #15202b; color: #e7e9ea; }
-      p { color: #8b98a5; }
+      p, h1 span { color: #8b98a5; }
     }
   </style>
 </head>
 <body>
+  <h1><b id="name"></b> <span id="version"></span></h1>
   <label>
     <input type="checkbox" id="autoExpand">
     <span data-i18n="popupAuto"></span>
