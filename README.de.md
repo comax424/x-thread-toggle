@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Chrome-Erweiterung für x.com. Unter jeder Antwort, die selbst Antworten hat, erscheint ein Button
+Browser-Erweiterung für x.com, für Chrome und Firefox. Unter jeder Antwort, die selbst Antworten hat, erscheint ein Button
 „▸ Antworten anzeigen (N)“. Ein Klick klappt **alle** Beiträge darunter als verschachtelten Baum auf
 (Ebene für Ebene, bis zu 15 Abfragen pro Klick), statt dass man jede Antwort einzeln öffnen muss.
 Jede Ebene lässt sich einzeln wieder einklappen. Tiefere Äste, die nicht mehr ins Budget passten,
@@ -36,7 +36,9 @@ Die Übersetzungen wurden mit KI erstellt und nicht von Muttersprachlern geprüf
 
 ## Installieren
 
-1. Die ZIP-Datei aus dem [neuesten Release](../../releases/latest) herunterladen und entpacken (oder dieses Repository klonen).
+### Chrome
+
+1. `x-thread-toggle-<version>.zip` aus dem [neuesten Release](../../releases/latest) herunterladen und entpacken (oder dieses Repository klonen).
 2. In Chrome `chrome://extensions` öffnen.
 3. Oben rechts den Schalter **Entwicklermodus** einschalten.
 4. **Entpackte Erweiterung laden** klicken und den entpackten Ordner auswählen.
@@ -44,10 +46,28 @@ Die Übersetzungen wurden mit KI erstellt und nicht von Muttersprachlern geprüf
 
 Funktioniert ebenso in anderen Chromium-Browsern wie Vivaldi, Brave oder Edge.
 
+### Firefox (ab Version 142)
+
+1. `x-thread-toggle-<version>-firefox.xpi` aus dem [neuesten Release](../../releases/latest) herunterladen.
+2. `about:addons` öffnen, auf das Zahnrad klicken und **Add-on aus Datei installieren…** wählen, dann die Datei auswählen
+   (oder die Datei in ein Firefox-Fenster ziehen).
+3. Die Rückfrage bestätigen; sie fragt auch nach dem Zugriff auf x.com.
+4. Offene x.com-Tabs einmal neu laden.
+
+Die Datei ist von Mozilla signiert, aber nicht auf addons.mozilla.org gelistet. Firefox aktualisiert sie deshalb nicht selbst:
+eine neuere Version genauso installieren, die Einstellungen bleiben erhalten. Erscheint auf x.com nichts, in `about:addons`
+bei der Erweiterung den Reiter **Berechtigungen** prüfen.
+
+### Pakete bauen
+
+`./build.sh [git-ref]` baut beide Pakete aus einem Commit oder Tag (Standard: `HEAD`) nach `dist/`:
+das Chrome-ZIP und ein Firefox-ZIP zum Signieren auf addons.mozilla.org. Der Code ist für beide gleich;
+für Firefox ergänzt das Skript in `manifest.json` nur die Add-on-ID, die Mindestversion und die Angabe zur Datenerhebung.
+
 ## Datenschutz
 
-- Die Erweiterung läuft nur auf `https://x.com/*` und verlangt eine einzige Berechtigung: `storage`, für ihre zwei Einstellungen
-  (über `chrome.storage.sync` mit deinem Browserprofil synchronisiert).
+- Die Erweiterung läuft nur auf `https://x.com/*` und verlangt eine einzige Berechtigung: `storage`, für ihre drei Einstellungen
+  (über `storage.sync` mit deinem Browserprofil synchronisiert). In Firefox erklärt sie, dass sie keine Daten erhebt.
 - Sie schickt Anfragen **ausschließlich an x.com**, mit deiner bestehenden X-Anmeldung im Browser – genau wie X' eigene Web-App.
   Bilder kommen von X' eigenen Bildservern.
 - Keine Statistik, kein Tracking, keine fremden Server. Nichts, was du liest oder schreibst, wird gespeichert oder anderswohin gesendet.

@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-09
+
+### Added
+
+- Firefox support (Firefox 142 or later). The release contains a Mozilla-signed `.xpi` that is not listed on
+  addons.mozilla.org. The extension's code is the same as in 1.2.1.
+- `build.sh` builds the Chrome ZIP and the Firefox package from a git ref. For Firefox it adds the add-on ID,
+  the minimum version and the data collection declaration (`none`) to `manifest.json`.
+
+### Fixed
+
+- README: the privacy section mentioned two settings; there are three.
+
 ## [1.2.1] - 2026-11-09
 
 ### Fixed
@@ -62,7 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/comax424/x-thread-toggle/compare/v1.1.0...v1.1.1

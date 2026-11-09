@@ -2,7 +2,7 @@
 
 [Deutsch](README.de.md)
 
-A Chrome extension for x.com. Below every reply that has replies of its own, a button
+A browser extension for x.com, for Chrome and Firefox. Below every reply that has replies of its own, a button
 “▸ Show replies (N)” appears. One click expands **all** posts underneath as a nested tree
 (level by level, up to 15 requests per click), instead of having to open every reply one by one.
 Each level can be collapsed again on its own. Deeper branches that did not fit into the request
@@ -36,7 +36,9 @@ The translations are machine-generated and have not been reviewed by native spea
 
 ## Installation
 
-1. Download the ZIP from the [latest release](../../releases/latest) and unzip it (or clone this repository).
+### Chrome
+
+1. Download `x-thread-toggle-<version>.zip` from the [latest release](../../releases/latest) and unzip it (or clone this repository).
 2. Open `chrome://extensions` in Chrome.
 3. Turn on **Developer mode** (top right).
 4. Click **Load unpacked** and select the unzipped folder.
@@ -44,10 +46,28 @@ The translations are machine-generated and have not been reviewed by native spea
 
 Also works in other Chromium browsers such as Vivaldi, Brave or Edge.
 
+### Firefox (142 or later)
+
+1. Download `x-thread-toggle-<version>-firefox.xpi` from the [latest release](../../releases/latest).
+2. Open `about:addons`, click the gear icon and choose **Install Add-on From File…**, then select the file
+   (or drag the file into a Firefox window).
+3. Confirm the prompt, which also asks for access to x.com.
+4. Reload any open x.com tabs.
+
+The file is signed by Mozilla but not listed on addons.mozilla.org, so Firefox does not update it automatically:
+install a newer version the same way; your settings are kept. If nothing appears on x.com, check the
+**Permissions** tab of the extension in `about:addons`.
+
+### Building the packages
+
+`./build.sh [git-ref]` builds both packages from a commit or tag (default: `HEAD`) into `dist/`:
+the Chrome ZIP and a Firefox ZIP for signing on addons.mozilla.org. The code is the same for both;
+for Firefox the script only adds the add-on ID, the minimum version and the data-collection declaration to `manifest.json`.
+
 ## Privacy
 
-- The extension only runs on `https://x.com/*` and requests a single permission: `storage`, for its two settings
-  (synced with your browser profile via `chrome.storage.sync`).
+- The extension only runs on `https://x.com/*` and requests a single permission: `storage`, for its three settings
+  (synced with your browser profile via `storage.sync`). In Firefox it declares that it collects no data.
 - It sends requests **only to x.com**, using your existing X session in the browser — exactly like X's own web app.
   Images are loaded from X's own image servers.
 - No analytics, no tracking, no third-party servers. Nothing you read or write is stored or sent anywhere else.
