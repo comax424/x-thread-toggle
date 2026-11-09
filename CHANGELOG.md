@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-11-09
+
+### Changed
+
+- Renamed to “Thread View for X” (in all 28 localized names; Irish and Maltese use English) so the name describes what the extension does for X
+  instead of reading like a product of X Corp.
+
+### Added
+
+- `amo-metadata.json` and `./sign-firefox.sh listed`: submits a version for public listing on addons.mozilla.org,
+  with summary, description, category, license and notes for Mozilla's reviewers.
+
 ## [1.3.0] - 2026-11-09
 
 ### Added
@@ -77,7 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/comax424/x-thread-toggle/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/comax424/x-thread-toggle/compare/v1.1.1...v1.2.0

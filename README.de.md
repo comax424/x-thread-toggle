@@ -1,4 +1,4 @@
-# X Thread-Ansicht
+# Thread-Ansicht für X
 
 [English](README.md)
 
@@ -82,6 +82,8 @@ Die Schritte 2–7 gehen auch über die Kommandozeile: unter <https://addons.moz
 API-Zugangsdaten anlegen, in `~/.config/x-thread-toggle/amo-api.env` eintragen
 (`WEB_EXT_API_KEY=<JWT issuer>`, `WEB_EXT_API_SECRET=<JWT secret>`, `chmod 600`) und `./sign-firefox.sh` starten.
 Das Skript lädt `dist/firefox` als ungelistete Version hoch, wartet auf die Signatur und speichert `dist/x-thread-toggle-<version>-firefox.xpi`.
+`./sign-firefox.sh listed` reicht die Version stattdessen zur öffentlichen Listung auf addons.mozilla.org ein, mit Texten,
+Kategorie, Lizenz und Hinweisen für die Prüfer aus `amo-metadata.json`; Mozilla prüft sie, bevor sie erscheint.
 
 ## Datenschutz
 

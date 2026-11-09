@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "X Vue en fil"
+    "message": "Vue en fil pour X"
   },
   "extDescription": {
     "message": "Affiche et masque d’un clic toutes les réponses sous une réponse sur x.com, sous forme de fil imbriqué."

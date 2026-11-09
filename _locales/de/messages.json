@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "X Thread-Ansicht"
+    "message": "Thread-Ansicht für X"
   },
   "extDescription": {
     "message": "Blendet auf x.com alle Unterantworten einer Antwort per Klick als verschachtelten Thread ein und aus."
