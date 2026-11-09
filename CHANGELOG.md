@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Renamed to “Thread View for X” (in all 28 localized names; Irish and Maltese use English) so the name describes what the extension does for X
-  instead of reading like a product of X Corp.
+- Renamed to “Thread View for X (unofficial)” (in all 28 localized names; Irish and Maltese use English) so the name
+  describes what the extension does for X and says that it is not a product of X Corp.
 
 ### Added
 

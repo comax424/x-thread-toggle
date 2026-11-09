@@ -1,4 +1,4 @@
-# Thread-Ansicht für X
+# Thread-Ansicht für X (inoffiziell)
 
 [English](README.md)
 

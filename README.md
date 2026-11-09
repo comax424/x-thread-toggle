@@ -1,4 +1,4 @@
-# Thread View for X
+# Thread View for X (unofficial)
 
 [Deutsch](README.de.md)
 
