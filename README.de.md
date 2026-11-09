@@ -78,6 +78,11 @@ Firefox installiert nur signierte Add-ons dauerhaft. Mozilla signiert kostenlos;
 7. Mozilla signiert die Datei und schickt eine E-Mail. Die signierte `.xpi` auf der Versionsseite herunterladen und
    als `x-thread-toggle-<version>-firefox.xpi` an das GitHub-Release hängen.
 
+Die Schritte 2–7 gehen auch über die Kommandozeile: unter <https://addons.mozilla.org/en-US/developers/addon/api/key/>
+API-Zugangsdaten anlegen, in `~/.config/x-thread-toggle/amo-api.env` eintragen
+(`WEB_EXT_API_KEY=<JWT issuer>`, `WEB_EXT_API_SECRET=<JWT secret>`, `chmod 600`) und `./sign-firefox.sh` starten.
+Das Skript lädt `dist/firefox` als ungelistete Version hoch, wartet auf die Signatur und speichert `dist/x-thread-toggle-<version>-firefox.xpi`.
+
 ## Datenschutz
 
 - Die Erweiterung läuft nur auf `https://x.com/*` und verlangt eine einzige Berechtigung: `storage`, für ihre drei Einstellungen

@@ -78,6 +78,11 @@ Firefox only installs signed add-ons permanently. Signing is free and done by Mo
 7. Mozilla signs the file and sends an email. Download the signed `.xpi` from the version page and attach it
    to the GitHub release as `x-thread-toggle-<version>-firefox.xpi`.
 
+Steps 2–7 can also run from the command line: create API credentials at
+<https://addons.mozilla.org/en-US/developers/addon/api/key/>, put them into `~/.config/x-thread-toggle/amo-api.env`
+(`WEB_EXT_API_KEY=<JWT issuer>`, `WEB_EXT_API_SECRET=<JWT secret>`, `chmod 600`) and run `./sign-firefox.sh`.
+It uploads `dist/firefox` as an unlisted version, waits for the signature and saves `dist/x-thread-toggle-<version>-firefox.xpi`.
+
 ## Privacy
 
 - The extension only runs on `https://x.com/*` and requests a single permission: `storage`, for its three settings
