@@ -18,6 +18,14 @@ behalten ihren eigenen Button.
   **Antworten** (Eingabefeld direkt darunter) · **Reposten** (Menü: Reposten/rückgängig oder Zitieren) · **Gefällt mir** ·
   **Aufrufe** (Link zur Statistik) · **Lesezeichen** · **Teilen** (Link kopieren). Antworten und Zitate sind reiner Text –
   für Bilder, Umfragen oder Emojis den Beitrag über das Datum auf X öffnen. Name, @-Handle und Profilbild führen zum Profil.
+- **Sieht aus und funktioniert wie X:** Eingeblendete Beiträge werden aus einer Kopie einer echten X-Antwort auf der Seite
+  gebaut: gleiches Layout, gleiche Symbole, Emojis, Haken, relative Zeiten und Hover-Effekte. Jeder Beitrag hat X' Grok-Button
+  („Diesen Post erläutern“, öffnet X' Grok-Seitenleiste) und X' ⋯-Menü (Folgen, Listen, Stummschalten, Unterhaltung stummschalten,
+  Blockieren, Post-Aktivität, Einbetten, Melden, EU-Meldung, Kollektive Anmerkungen). Ein Klick öffnet den Beitrag, Links bleiben in X' App.
+- **Profilkarte:** Fährt man in der Thread-Ansicht mit der Maus über einen Namen oder ein Profilbild, erscheint eine Karte
+  im Aufbau von X' eigener Karte: Profilbild, Name, Verifizierungshaken, „Folgt Dir“, Bio, „Folge ich“ und „Follower“,
+  „Gefolgt von …“ (Konten, denen du folgst), der Folgen-Button (Folgen, Ebenfalls folgen, Folge ich → Entfolgen mit Rückfrage,
+  Ausstehend) und „Kurzprofil“, das wie X' eigener Button X' Grok-Seitenleiste mit dem @-Handle des Kontos öffnet.
 - **Einstellungen** (Klick auf das Erweiterungssymbol, ggf. erst über das Puzzle-Symbol anheften). Beide wirken sofort:
 
   | Häkchen | Standard | Wirkung |
@@ -99,6 +107,9 @@ Kategorie, Lizenz und Hinweisen für die Prüfer aus `amo-metadata.json`; Mozill
   (Abfrage-ID, Feature-Flags, Sitzungs-Header), und wiederholt sie mit der ID einer Antwort, um deren Antworten zu laden.
 - **Schreiben** (Gefällt mir, Repost, Lesezeichen, Antworten): Dafür verlangt X den Header `x-client-transaction-id`. Die Erweiterung
   erzeugt ihn mit X' eigenem Generator aus dem Webpack-Bundle der Seite; Abfrage-IDs und Feature-Flags liest sie zur Laufzeit aus X' Haupt-Bundle.
+- **Profilkarte:** Wie X' eigene Karte lädt sie das Konto mit `UserByScreenName` und „Gefolgt von …“ mit
+  `friends/following/list` nach (einmal pro Konto und Seitenaufruf). Folgen, Entfolgen und das Verwerfen einer Anfrage nutzen
+  `friendships/create`, `friendships/destroy` und `friendships/cancel`, dieselben Schnittstellen wie X' Folgen-Button.
 - **Abfrage-Limit:** X erlaubt 300 `TweetDetail`-Abfragen pro 15 Minuten. Die Automatik richtet sich nach dem Restwert, den X meldet,
   und lässt immer 50 für X selbst übrig.
 

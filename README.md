@@ -18,6 +18,14 @@ budget keep their own button.
   **Reply** (text box right below) · **Repost** (menu: repost/undo or quote) · **Like** · **Views** (link to post analytics) ·
   **Bookmark** · **Share** (copy link). Replies and quotes are text-only — open the post on X (via its date) for images, polls or emoji.
   Name, handle and avatar link to the profile.
+- **Looks and works like X:** expanded posts are built from a copy of a real X reply on the page: the same layout,
+  icons, emoji, verification badges, relative times and hover effects. Each post has X's Grok button (“Explain this post”,
+  opens X's Grok panel) and X's ⋯ menu (follow, Lists, mute, mute conversation, block, post engagements, embed, report,
+  EU report, Community Notes). Clicking a post opens it; links stay inside X's app.
+- **Profile card:** hovering over a name or avatar in the thread view shows a card built like X's own: avatar,
+  name, verification check, “Follows you”, bio, following and followers, “Followed by …” (accounts you follow), the
+  follow button (Follow, Follow back, Following → Unfollow with confirmation, Pending) and “Profile summary”, which opens
+  X's Grok panel with the account's @handle, like X's own button.
 - **Settings** (click the extension icon; pin it via the puzzle icon if needed). Both take effect immediately:
 
   | Option | Default | Effect |
@@ -99,6 +107,9 @@ category, license and reviewer notes from `amo-metadata.json`; Mozilla reviews i
   (query ID, feature flags, session headers) and repeats it with the ID of a reply to load that reply's replies.
 - **Writing** (like, repost, bookmark, reply): X requires an `x-client-transaction-id` header for these. The extension
   generates it with X's own generator from the page's webpack bundle; query IDs and feature flags are read from X's main bundle at runtime.
+- **Profile card:** like X's own card it loads the account with `UserByScreenName` and “Followed by …” with
+  `friends/following/list` (once per account and page view). Follow, unfollow and cancelling a follow request use
+  `friendships/create`, `friendships/destroy` and `friendships/cancel`, the same endpoints X's follow button calls.
 - **Rate limit:** X allows 300 `TweetDetail` requests per 15 minutes. Automatic expansion follows the remaining count X reports
   and always leaves 50 for X itself.
 

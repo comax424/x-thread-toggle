@@ -6,6 +6,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-11-10
+
+### Changed
+
+- Posts in the thread view look and work like X's own: each one is built from a copy of a real X reply on the page
+  (avatar, name with X's emoji images and verification badge, @handle, relative time such as “8 min”, Grok button,
+  ⋯ button, action bar with X's icons, colors and hover effects, X's font size setting). @mentions, #hashtags and
+  $cashtags are linked. Clicking a post opens it; links navigate inside X's app, so expanded threads are still there
+  after going back. If no X reply is on the page, the previous simple layout is used.
+
+### Added
+
+- Grok button (“Explain this post”): opens X's Grok side panel for the post, like X's own button.
+- ⋯ menu with X's entries, texts and icons: follow/unfollow, add/remove from Lists (X's dialog), mute/unmute,
+  mute this conversation, block/unblock (with X's confirmation), view post engagements, embed post (publish.x.com),
+  report post (X's report dialog), report illegal content in the EU, and Community Notes where X offers them.
+- Repost and share buttons open a menu like X's (repost/undo, quote; copy link).
+- Profile card in the thread view, built like X's own card: hovering over a name or avatar for half a second shows
+  avatar, name, verification check, “Follows you”, bio (with expanded links), following and followers, “Followed by …”
+  with the avatars of accounts you follow, a follow button with X's states (Follow, Follow back, Following → Unfollow,
+  Pending; unfollowing and discarding a follow request ask first) and “Profile summary”, which opens Grok with the
+  account's @handle in X's Grok side panel. Like X, the card loads the account (`UserByScreenName`) and the accounts you know
+  (`friends/following/list`) once per account and page view. It follows X's light, dim or dark theme, closes when the
+  mouse leaves it or the page scrolls, and opens above the name when there is no room below.
+
 ## [1.3.2] - 2026-11-09
 
 ### Changed
@@ -90,7 +115,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.3.2...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/comax424/x-thread-toggle/compare/v1.3.2...v1.4.0
 [1.3.2]: https://github.com/comax424/x-thread-toggle/compare/v1.3.0...v1.3.2
 [1.3.0]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/comax424/x-thread-toggle/compare/v1.2.0...v1.2.1
