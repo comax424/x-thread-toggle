@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-11-10
+
+Same features as 1.4.0.
+
+### Fixed
+
+- The release contains the Mozilla-signed Firefox file again. Release 1.4.0 had none, because its version number was
+  used for the submission to addons.mozilla.org; from now on every release includes a Firefox file.
+- README: Firefox installation by clicking the file in the latest release, and how Firefox updates.
+- The render test runs again with 1.4.0's code (it was missing `addEventListener` and used an outdated selector).
+
 ## [1.4.0] - 2026-11-10
 
 ### Changed
@@ -115,7 +126,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reading view with reply, repost/quote, like, views, bookmark and share actions; name and avatar link to the profile.
 - Optional wider middle column (1000 px) on large windows; 16 px indentation per level.
 
-[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/comax424/x-thread-toggle/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/comax424/x-thread-toggle/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/comax424/x-thread-toggle/compare/v1.3.2...v1.4.0
 [1.3.2]: https://github.com/comax424/x-thread-toggle/compare/v1.3.0...v1.3.2
 [1.3.0]: https://github.com/comax424/x-thread-toggle/compare/v1.2.1...v1.3.0

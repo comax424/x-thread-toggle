@@ -56,15 +56,16 @@ Also works in other Chromium browsers such as Vivaldi, Brave or Edge.
 
 ### Firefox (142 or later)
 
-1. Download `x-thread-toggle-<version>-firefox.xpi` from the [latest release](../../releases/latest).
-2. Open `about:addons`, click the gear icon and choose **Install Add-on From File…**, then select the file
-   (or drag the file into a Firefox window).
-3. Confirm the prompt, which also asks for access to x.com.
-4. Reload any open x.com tabs.
+1. Open the [latest release](../../releases/latest) in Firefox and click `x-thread-toggle-<version>-firefox.xpi`.
+2. Firefox asks whether github.com may install an add-on: click **Continue to Installation**, then **Add**.
+3. Reload any open x.com tabs.
 
-The file is signed by Mozilla but not listed on addons.mozilla.org, so Firefox does not update it automatically:
-install a newer version the same way; your settings are kept. If nothing appears on x.com, check the
-**Permissions** tab of the extension in `about:addons`.
+If Firefox only downloads the file: open `about:addons`, click the gear icon, choose **Install Add-on From File…**
+and select the file (or drag the file into a Firefox window).
+
+Every release contains a Firefox file signed by Mozilla. To update, install the file of a newer release the same way;
+your settings are kept. Versions that are also listed on addons.mozilla.org are installed by Firefox automatically.
+If nothing appears on x.com, check the **Permissions** tab of the extension in `about:addons`.
 
 ### Building the packages
 
