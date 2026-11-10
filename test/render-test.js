@@ -20,7 +20,9 @@ class El {
   find(pred) { for (const c of this.children) { if (typeof c === 'string') continue; if (pred(c)) return c; const r = c.find(pred); if (r) return r; } }
 }
 globalThis.window = globalThis;
-globalThis.document = { createElement: (t) => new El(t), querySelector: () => null, querySelectorAll: () => [], documentElement: { dataset: {}, lang: 'de' } };
+globalThis.document = { createElement: (t) => new El(t), querySelector: () => null, querySelectorAll: () => [], documentElement: { dataset: {}, lang: 'de' },
+  addEventListener() {}, cookie: '' }; // ohne echte X-Beiträge auf der Seite nutzt renderTweet die einfache Darstellung
+globalThis.addEventListener = () => {};
 globalThis.XMLHttpRequest = class { open() {} setRequestHeader() {} addEventListener() {} };
 globalThis.MutationObserver = class { observe() {} };
 globalThis.requestAnimationFrame = () => {}; globalThis.location = { pathname: '/', origin: 'https://x.com' };
@@ -87,7 +89,7 @@ const collect = (el, cls, out = []) => { for (const c of el.children) if (typeof
   const cells = [nativeCell('201'), nativeCell('202')];
   const treeCards = [{ dataset: { tid: '201' }, offsetParent: {} }];
   const realQuery = document.querySelectorAll;
-  document.querySelectorAll = (s) => (s === '.xtt-replies .xtt-tweet' ? treeCards
+  document.querySelectorAll = (s) => (s === '.xtt-replies [data-tid]' ? treeCards
     : s === '[data-xtt-dup]' ? cells.filter((c) => 'xttDup' in c.dataset)
     : s.startsWith('article') ? cells.map((c) => c.article) : []);
   const state = () => cells.map((c) => ('xttDup' in c.dataset ? 'hidden' : 'shown')).join('/');
